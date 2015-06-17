@@ -1,0 +1,66 @@
+
+
+We have a harware definition per board used, called hw_def-b<x>.ads
+
+this is on its own level.
+
+So finrod compiles as demo.adb which imports the user app and the
+finrod runtime. Any might import the hw_def-bx.ads? This cant be. The
+runtime needs a fixed location, so part of the app init consists of
+transferring the info to finrod board.
+
+but what about the types etc???  They will be app depenent, so the app
+must import the hw_def-bx.ads directly.
+
+----
+
+On the niniel side the user app imports all the hw_def-bx's.ads and
+extracts from them the process layout for the total application (Of
+necessity by user-program; every setup is different, and it is intimately
+connected to the user program).  Also the addresses get extracted, for
+ease of working. So those addresses are fixed in the hw_def-b<x>.ads
+file.
+
+But on the hardware side one must be able to change the board address
+to adapt to the place where it will be used.  So perhaps the hardware
+switch is part of the address and also the type of board is part of
+the address!
+
+This then means that the hardware setup must be compared to the
+definitions in the ads file, on startup in the outstations.  And as
+far as possible the hw_def-bx.ads must go back to the main station at
+start up, so that it can be compared to the mainstations idea of the
+field layout. At the same time a broken hardware setup is
+communicated, which is then an a-priory broken system.
+
+----
+
+So niniel compiles as the user app (which has imported the individual boards'
+hw_def's) and the niniel runtime.
+
+----
+
+We could while programming, feed the collated individual boards'
+hw_def's back to the finrod app. In this way finrod app knows where to find its data in the eth frame at runtime.
+
+See mainstation_field_integration.uxf / pdf
+
+----
+more disjointed ramblings:
+
+When every out-node imports the project hardware definition and this
+is the mother package with the outstations as sub packages then nodes
+down stream can see upstream node interfaces, and a limited form of
+node interconnection becomes possible.
+
+when the inputs to the mainstation are not wiped in the next window
+then upstream nodes can see the _old_ mainstation inputs with the
+_new_ mainstation outputs to any downstream nodes.
+
+So a EM flag raised by any out-node is seen by all nodes within one
+scantime. Although some see it in this scan (the downstream) and some
+in the next scan (the upstream).
+
+----
+and in the vacuum plant for instance, limitswitches fet automatically transferred downstream. So this scheme has merit.
+

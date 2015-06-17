@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="12.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>50</x>
+      <y>150</y>
+      <w>110</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>hw_def_b1.ads
+--
+has a record 
+that describes
+the eth io bits.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>340</x>
+      <y>150</y>
+      <w>140</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>project_img.ads
+--
+collect all the 
+hw_defs into a big
+record.
+so it becomes a
+ethernet data
+frame.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>50</x>
+      <y>280</y>
+      <w>110</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>hw_def_b2.ads
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>50</x>
+      <y>400</y>
+      <w>110</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>hw_def_b3.ads
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>50</x>
+      <y>540</y>
+      <w>110</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>eth_frame.ads
+--
+one for each
+board.
+stuff is found
+back by name.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>30</x>
+      <y>20</y>
+      <w>160</w>
+      <h>630</h>
+    </coordinates>
+    <panel_attributes>Finrod</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>320</x>
+      <y>30</y>
+      <w>200</w>
+      <h>510</h>
+    </coordinates>
+    <panel_attributes>Niniel</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>130</x>
+      <y>150</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;import&gt;&gt;</panel_attributes>
+    <additional_attributes>210;50;30;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>130</x>
+      <y>280</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;import&gt;&gt;</panel_attributes>
+    <additional_attributes>210;50;30;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>130</x>
+      <y>390</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;import&gt;&gt;</panel_attributes>
+    <additional_attributes>210;50;30;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>130</x>
+      <y>290</y>
+      <w>500</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;access&gt;&gt;</panel_attributes>
+    <additional_attributes>30;300;430;300;430;30;350;30</additional_attributes>
+  </element>
+</diagram>

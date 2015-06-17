@@ -1,0 +1,87 @@
+
+
+
+1.  master send a discovery packet around.
+
+1a. if node is up and running chop leading address and send on.
+
+1b. if node has problem but can send: report to master. --> brake off.
+
+1c. if node is incapable: do nothing.
+    This implies that master will send recovery packet again after time.
+    after 'x' discovery packets master gives up. --> print diagnosis, brake off.
+    Master has listened on the bus to know who the last receiver was.
+
+
+When no operator stop or EM stop --+ else print diagnosis and
+                                   |      break off.
+                                   V
+                                   
+state after successful 1.:
+      master knows all addresses.
+      nodes know all addresses.
+      nodes are up and running.
+      nodes have not yet entered cyclic behaviour.
+
+
+2. master does ptp exchange with each node in return.
+
+2a. if node has problem but can send: report to master. --> print diagnosis,
+                                                            brake off.
+
+2c. if node is incapable: do nothing.
+    This implies that master initiate ptp packet exchange again after time.
+    after 'x' tries master givers up. --> print diagnosis,
+                                          brake off.
+    (master knows the station having trouble)
+
+
+When no operator stop or EM stop --+ else print diagnosis and
+                                   |      break off.
+                                   V
+
+
+state after successful 2.:
+      all nodes are syncronized to master.
+      nodes read their internal state at each sync time.
+      outputs are still off.
+
+
+3. at the first synctime after successful 2. master sends process data frame.
+   the output values are reset values.
+   (so these reset values should be in the hardware definition.)
+   node sends back their input readings.
+
+3a. if master does not recieve the datagram back in 't' time, try again.
+    if no response  --> send EMstop package and brake off.
+
+
+When no operator stop or EM stop --+ else print diagnosis and
+                                   |      break off.
+                                   |      (a new startup will reveal the break.)
+                                   V
+
+state after successful 3.:
+      all nodes have received valid data and can now function.
+
+
+
+4. nodes do any calculations.
+   Master can also do calculations, with the field values as input.
+
+5. at synctime and when true packet has been received, nodes set
+   their outputs to the data received and read their inputs.
+   (this first happens first at the 2nd synctime. So this is
+   where outputs are enabled.)
+
+
+
+6. after synctime master sends process data frame.
+
+   Stage 3a. applies here.
+
+7. perhaps do a ptp exchange with one node only.
+
+   goto 4.
+    
+      
