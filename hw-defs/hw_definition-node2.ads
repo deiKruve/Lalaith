@@ -37,17 +37,17 @@ package Hw_Definition.Node2 is
       --------------------------------------------------------------------
       --  in the node it may be addressed by means of the
       --  project definition. or perhaps an address overlay can be used.
-      type Hw_Def_Sample_Data is record
+      type Hw_Def_Data is record
          Dig_In  : STM32F4.Bits_32;
          Dig_Out : STM32F4.Bits_16;
       end record;
       
-      for Hw_Def_Sample_Data use record
+      for Hw_Def_Data use record
          Dig_In   at 0 range 0 .. 31;
          Dig_Out  at 4 range 0 .. 15;
       end record;
-      for Hw_Def_Sample_Data'Bit_Order use System.High_Order_First;
-      for Hw_Def_Sample_Data'Scalar_Storage_Order use System.High_Order_First;
+      for Hw_Def_Data'Bit_Order use System.High_Order_First;
+      for Hw_Def_Data'Scalar_Storage_Order use System.High_Order_First;
       -- its Big Endian
         
       

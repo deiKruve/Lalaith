@@ -64,3 +64,17 @@ in the next scan (the upstream).
 ----
 and in the vacuum plant for instance, limitswitches fet automatically transferred downstream. So this scheme has merit.
 
+=======================================
+
+how to discover the field:
+
+the application calls ioctl with a variable length array oid of field-
+mac addresses.
+
+this call might have the size as an argument. this size multiplyed by
+the element size will be encoded into the ioctl cmd as usual.
+
+On the other side size div element size gives the number of array positions.
+
+In other words niniel must import the hw definition?
+Or there is an interface file that has its vars set by application?
