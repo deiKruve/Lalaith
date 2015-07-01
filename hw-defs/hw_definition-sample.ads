@@ -1,30 +1,34 @@
 with System;
-with Finrod.Board;
-with STM32F4;
+--with Finrod.Board;
+--with STM32F4;
+with Hw_Types;
    
 package Hw_Definition.Sample is
-   use type STM32F4.Bits_48;
-   use type STM32F4.Bits_32;
+   
+   package Hwt renames Hw_Types;
+   
+   use type Hwt.Bits_48;
+   use type Hwt.Bits_32;
       
-      Typ      : Finrod.Board.Board_Type  := 00;
+      Typ      : Hwt.Byte    := 00;
       --  the type of board as set on the jumpers.
       --  adapt on application.
       --  use for error detection on start-up.
       
-      Id       : Finrod.Board.Board_Id    := 00;
+      Id       : Hwt.Byte    := 00;
       --  the hardware Id as set on the id selector.
       --  adapt on application.
       --  use for error detection on start-up.
       
-      Mac_Addr : Finrod.Board.Mac_Address := 
+      Mac_Addr : Hwt.Bits_48 := 
         16#02_00_00_00_00_00# + 
-        STM32F4.Bits_48 (Typ) * 16#1_00_00# + STM32F4.Bits_48 (Id) * 16#1_00#;
+        Hwt.Bits_48 (Typ) * 16#1_00_00# + Hwt.Bits_48 (Id) * 16#1_00#;
       --  the boards mac address.
       --  should calculate automatically, do not modify.
       
-      Ip_Addr  : Finrod.Board.Ip_Address :=
+      Ip_Addr  : Hwt.Bits_32 :=
         16#10_00_00_00# + 
-        STM32F4.Bits_32 (Typ) * 16#1_00_00# + STM32F4.Bits_32 (Id) * 16#1_00#;
+        Hwt.Bits_32 (Typ) * 16#1_00_00# + Hwt.Bits_32 (Id) * 16#1_00#;
       --  the boards ip address.
       --  should calculate automatically, do not modify.
       
@@ -38,8 +42,8 @@ package Hw_Definition.Sample is
       --  in the node it may be addressed by means of the
       --  project definition. or perhaps an address overlay can be used.
       type Hw_Def_Data is record
-         Dig_In  : STM32F4.Bits_32;
-         Dig_Out : STM32F4.Bits_16;
+         Dig_In  : Hwt.Bits_32;
+         Dig_Out : Hwt.Bits_16;
       end record;
       
       for Hw_Def_Data use record
@@ -50,7 +54,5 @@ package Hw_Definition.Sample is
       for Hw_Def_Data'Scalar_Storage_Order use System.High_Order_First;
       -- its Big Endian
         
-      
-      
-   
+
 end Hw_Definition.Sample;

@@ -1,5 +1,5 @@
 
---  this ia the projects hardware definition's root file. 
+--  this ia the project hardware definition's root file. 
 
 package Hw_Definition is
       
