@@ -19,21 +19,24 @@ package Hw_Definition.Main is
    
    ---------------------------------
    --  the number of field nodes  --
+   --  and the filler size        --
+   --   if needed                 --
    ---------------------------------
+   
    Nodes : constant Natural := 3;
+   --  Number of field nodes.
    --  to be set when collating the board definitions.
    
+   Filler_Size :constant Natural := 304 - (Nodes * 48);
+   -- this will trip the compiler when no filler is needed, in that case
+   --  set it to 0; since it is needed below.
+   --
+   -- Mac_Addr_Ary_Type must have min of 304 bits.
+   -- and a node address is 48 bits long.
    
-   --  type Mac_Addr_Ary_Type is array (1 .. Nodes) of Hwt.Bits_48;
-   --  --for Mac_Addr_Ary_Type'Component_Size use 48;
-   --  -- for Mac_Addr_Ary_Type'Bit_Order            use System.High_Order_First;
-   --  for Mac_Addr_Ary_Type'Scalar_Storage_Order use System.High_Order_First;
-   --  -- its Big Endian
+   Addr_Array_Size : constant Natural := Nodes * 48 + Filler_Size;
    
-   --  Mac_Addr_Ary : Mac_Addr_Ary_Type := (Hw_Definition.Sample.Mac_Addr,
-   --                                       Hw_Definition.Node1.Mac_Addr,
-   --                                       Hw_Definition.Node2.Mac_Addr);
-   
+  
    
    ------------------------------------------
    --  the mac addresses of all the nodes  --
@@ -43,14 +46,18 @@ package Hw_Definition.Main is
       Sample : Hwt.Bits_48 := Hw_Definition.Sample.Mac_Addr;
       Node1  : Hwt.Bits_48 := Hw_Definition.Node1.Mac_Addr;
       Node2  : Hwt.Bits_48 := Hw_Definition.Node2.Mac_Addr;
+      -- we need a filler to make the frame 38 octets. (304 bits)
+      -- see niniel.discover for the reasoning (type Disco_Packet_Type)
+      Filler : Reserved (144 .. 303);
    end record;
    
    for Mac_Addr_Ary_Type use record
       Sample at  0 range 0 .. 47;
       Node1  at  6 range 0 .. 47;
       Node2  at 12 range 0 .. 47;
+      Filler at 18 range 0 .. Filler_Size - 1;
    end record;
-   for Mac_Addr_Ary_Type'Size use 48 * Nodes;
+   for Mac_Addr_Ary_Type'Size use 48 * Nodes + Filler_size;
    for Mac_Addr_Ary_Type'Bit_Order            use System.High_Order_First;
    for Mac_Addr_Ary_Type'Scalar_Storage_Order use System.High_Order_First;
    -- its Big Endian
