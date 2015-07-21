@@ -89,9 +89,9 @@ package Hw_Definition.Main is
    --  in a discovery cycle               --
    -----------------------------------------
    type Field_Status_Image_Type is record
-      S_Node : Node_Status_Type := Hw_Definition.Sample.Node_Status;
-      Node1  : Node_Status_Type := Hw_Definition.Node1.Node_Status;
-      Node2  : Node_Status_Type := Hw_Definition.Node2.Node_Status;
+      S_Node : Node_Status_Type; --  := Hw_Definition.Sample.Node_Status;
+      Node1  : Node_Status_Type; --  := Hw_Definition.Node1.Node_Status;
+      Node2  : Node_Status_Type; --  := Hw_Definition.Node2.Node_Status;
       Filler : Reserved (1 .. Filler_Size);
       -- we leave the filler off here, thers no need for it??
    end record;
@@ -105,5 +105,12 @@ package Hw_Definition.Main is
    for Field_Status_Image_Type'Bit_Order            use System.High_Order_First;
    for Field_Status_Image_Type'Scalar_Storage_Order use System.High_Order_First;
    -- its Big Endian
+   
+   -- not sure about this
+   --
+   --  Field_Status : Field_Status_Image_Type;
+   --  --  master field status image
+   --  --  for use any where
+   
    
 end Hw_Definition.Main;

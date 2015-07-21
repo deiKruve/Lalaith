@@ -45,4 +45,5 @@ package Hw_Definition is
       
       type Node_Status_A_Type is access all Node_Status_Type;
       
+      
 end Hw_Definition;
