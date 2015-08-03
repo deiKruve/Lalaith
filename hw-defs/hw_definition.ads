@@ -2,9 +2,12 @@
 --  this ia the project hardware definition's root file. 
 
 with System;
+with Interfaces.C.Extensions;
 with Hw_Types;
 
 package Hw_Definition is
+   
+   package Ice renames Interfaces.C.Extensions;
    package Hwt renames Hw_Types;
    
    type Reserved_Bit is range 0 .. 1 with Size => 1; 
@@ -30,6 +33,7 @@ package Hw_Definition is
          -- the size of the node address,
          -- in whose place it comes in the frame.
          Filler           : Reserved (4 .. 47);
+         --Filler           : Ice.Unsigned_43;
       end record;
       
       for Node_Status_Type use record

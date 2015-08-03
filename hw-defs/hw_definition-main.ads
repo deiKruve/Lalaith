@@ -49,6 +49,8 @@ package Hw_Definition.Main is
       -- we need a filler to make the frame 38 octets. (304 bits)
       -- see niniel.discover for the reasoning (type Disco_Packet_Type)
       Filler : Reserved (1 .. Filler_Size);
+      -- but the space will be decided in the 'use record' stanza.
+      -- Filler : Ice.Unsigned_8;
    end record;
    
    for Mac_Addr_Ary_Type use record
@@ -93,6 +95,7 @@ package Hw_Definition.Main is
       Node1  : Node_Status_Type; --  := Hw_Definition.Node1.Node_Status;
       Node2  : Node_Status_Type; --  := Hw_Definition.Node2.Node_Status;
       Filler : Reserved (1 .. Filler_Size);
+      -- Filler : Ice.Unsigned_10;
       -- we leave the filler off here, thers no need for it??
    end record;
    
